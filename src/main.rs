@@ -26,7 +26,7 @@ type AppStateRef = &'static AppState;
 #[tokio::main]
 async fn main() -> ExitCode {
     static CONFIG: LazyLock<SdkConfig> =
-        LazyLock::new(|| config::load_or_create("sdk_server.toml"));
+        LazyLock::new(|| config::load_or_create("config/sdk_server.toml"));
     static STATE: OnceLock<AppState> = OnceLock::new();
 
     println!("
