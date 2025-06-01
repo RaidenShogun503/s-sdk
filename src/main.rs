@@ -6,7 +6,7 @@ use std::{
 use axum::Router;
 use config::SdkConfig;
 use database::DbContext;
-use handlers::{combo_granter, mdk_shield_api, register, risky_api};
+use handlers::{combo_granter, mdk_shield_api, register, risky_api, static_files};
 use tokio::net::TcpListener;
 use tracing::error;
 
@@ -51,6 +51,7 @@ async fn main() -> ExitCode {
         .merge(register::routes())
         .merge(mdk_shield_api::routes())
         .merge(combo_granter::routes())
+        .merge(static_files::routes())
         .with_state(STATE.get().unwrap());
 
     let listener = TcpListener::bind(&CONFIG.http_addr)

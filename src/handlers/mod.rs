@@ -11,6 +11,7 @@ pub mod combo_granter;
 pub mod mdk_shield_api;
 pub mod register;
 pub mod risky_api;
+pub mod static_files;
 
 #[derive(Serialize)]
 pub struct Response<T> {
