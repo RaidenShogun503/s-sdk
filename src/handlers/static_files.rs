@@ -2,7 +2,7 @@ use super::*;
 use axum::response::IntoResponse;
 use axum::response::Response;
 use axum::http::{HeaderMap, HeaderValue, StatusCode};
-use std::path::PathBuf;
+use axum::extract::Path;
 
 // Embed images into binary
 const IMAGES: &[(&str, &[u8])] = &[
@@ -13,7 +13,7 @@ const IMAGES: &[(&str, &[u8])] = &[
 ];
 
 pub fn routes() -> Router<AppStateRef> {
-    Router::new().route("/account/images/:filename", get(serve_image))
+    Router::new().route("/account/images/{filename}", get(serve_image))
 }
 
 async fn serve_image(Path(filename): Path<String>) -> Response {
